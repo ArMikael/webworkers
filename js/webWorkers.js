@@ -2,7 +2,7 @@
 	'use strict';
 
 	if (window.Worker) {
-		var myWorker = new Worker('js/worker.js'); // file with the worker functionality
+		var myWorker = new Worker('js/web-worker.js'); // file with the worker functionality
 		var message = { addThis: {num1:1, num2: 1}};
 
 		myWorker.postMessage(message); 

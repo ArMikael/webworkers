@@ -6,8 +6,8 @@
 	var secondNum = document.querySelector('#number2');
 
 	if (!!window.SharedWorker) {
-		var shardWorker = new SharedWorker('js/shared-worker.js');
-		var httpRequestWorker = new Worker('js/http-worker.js');
+		var shardWorker = new SharedWorker('js/shared-web-worker.js');
+		var httpRequestWorker = new Worker('js/http-web-worker.js');
 
 		console.log('Shared workers supported');
 

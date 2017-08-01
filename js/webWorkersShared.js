@@ -2,10 +2,10 @@
 	'use strict';
 
 	var contentH2 = document.querySelector('#header2');
-	var contentH3 = document.querySelector('#header3');
 	var firstNum = document.querySelector('#number1');
 	var secondNum = document.querySelector('#number2');
 	var userId = document.querySelector('#userId');
+	var userNameInput = document.querySelector('#userNameInput');
 
 	var name = document.querySelector('#name');
 	var username = document.querySelector('#username');
@@ -38,6 +38,10 @@
 			httpRequestWorker.port.postMessage([userId.value]);
 			console.log('User ID changed to: ' + userId.value);
 		};
+
+		// userNameInput.onchange = function () {
+		// 	httpRequestWorker.port.postMessage(['username', userNameInput.value]);
+		// };
 
 		httpRequestWorker.port.onmessage = function (e) {
 			var data = JSON.parse(e.data);

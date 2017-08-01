@@ -5,6 +5,12 @@
 	var contentH3 = document.querySelector('#header3');
 	var firstNum = document.querySelector('#number1');
 	var secondNum = document.querySelector('#number2');
+	var userId = document.querySelector('#userId');
+
+	var name = document.querySelector('#name');
+	var username = document.querySelector('#username');
+	var email = document.querySelector('#email');
+	var phone = document.querySelector('#phone');
 
 	if (!!window.SharedWorker) {
 		var shardWorker = new SharedWorker('js/shared-worker.js');
@@ -26,10 +32,21 @@
 		};
 
 		// HTTP Requests via Web Workers
-		httpRequestWorker.port.postMessage('HTTP');
+		// httpRequestWorker.port.postMessage('HTTP');
+
+		userId.onchange = function () {
+			httpRequestWorker.port.postMessage([userId.value]);
+			console.log('User ID changed to: ' + userId.value);
+		};
 
 		httpRequestWorker.port.onmessage = function (e) {
-			contentH3.textContent = e.data;
+			var data = JSON.parse(e.data);
+			name.textContent = data.name;
+			username.textContent = data.username;
+			email.textContent = data.email;
+			phone.textContent = data.phone;
+
+			console.log('User', data.user);
 			console.log('Data from HTTP request: ', e.data);
 		};
 	}

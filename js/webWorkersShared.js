@@ -1,13 +1,14 @@
 (function () {
 	'use strict';
 
-	var contentDiv = document.querySelector('#content');
+	var contentH2 = document.querySelector('#header2');
+	var contentH3 = document.querySelector('#header3');
 	var firstNum = document.querySelector('#number1');
 	var secondNum = document.querySelector('#number2');
 
 	if (!!window.SharedWorker) {
-		var shardWorker = new SharedWorker('js/shared-web-worker.js');
-		var httpRequestWorker = new Worker('js/http-web-worker.js');
+		var shardWorker = new SharedWorker('js/shared-worker.js');
+		// var httpRequestWorker = new SharedWorker('js/http-worker.js');
 
 		console.log('Shared workers supported');
 
@@ -22,17 +23,17 @@
 		};
 
 		shardWorker.port.onmessage = function (e) {
-			contentDiv.textContent = e.data;
+			contentH2.textContent = e.data;
 			console.log('Message received from Shared Worker', e.data);
 			console.log('Ports', e.ports);
 		};
 
 		// HTTP Requests via Web Workers
-		httpRequestWorker.postMessage('HTTP');
-
-		httpRequestWorker.onmessage = function (e) {
-			contentDiv.textContent = e.data;
-			console.log('Data from HTTP request: ', e.data);
-		};
+		// httpRequestWorker.port.postMessage('HTTP');
+        //
+		// httpRequestWorker.port.onmessage = function (e) {
+		// 	contentH3.textContent = e.data;
+		// 	console.log('Data from HTTP request: ', e.data);
+		// };
 	}
 })();

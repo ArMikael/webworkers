@@ -1,6 +1,4 @@
 onconnect = function (e) {
-    console.log('Inside shared worker');
-
     var port = e.ports[0];
 
     port.onmessage = function (e) {

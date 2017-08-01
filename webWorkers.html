@@ -1,37 +1,50 @@
 <html>
 	<head>
 		<title>Web Workers Test</title>
+		<style>
+			section {
+				margin-bottom: 100px;
+			}
+
+			label {
+				font-weight: 600;
+			}
+		</style>
 	</head>
 	<body>
 		<h1>Web Workers</h1>
-		<input type="text" id="number1" value="0">
-		<input type="text" id="number2" value="0">
-		<h2 id="header2">
-			Waiting for results...
-		</h2>
-		<br>
-		<br>
-		<br>
+		<section class="square">
+			<input type="text" id="number1" value="0">
+			<input type="text" id="number2" value="0">
+			<h2 id="header2">
+				Waiting for results...
+			</h2>
+		</section>
+
 
 		<h2>Enter User ID</h2>
 		<input type="text" id="userId">
-		<h3 id="header3">
+		<h3 id="header3"></h3>
 
-		</h3>
-		<label>Name:</label>
-		<span id="name"></span>
-		<br>
+		<div>
+			<label>Name:</label>
+			<span id="name"></span>
+		</div>
 
-		<label>User:</label>
-		<span id="username"></span>
-		<br>
+		<div>
+			<label>User:</label>
+			<span id="username"></span>
+		</div>
 
-		<label>Email:</label>
-		<span id="email"></span>
-		<br>
+		<div>
+			<label>Email:</label>
+			<span id="email"></span>
+		</div>
 
-		<label>Phone:</label>
-		<span id="phone"></span>
+		<div>
+			<label>Phone:</label>
+			<span id="phone"></span>
+		</div>
 
 		<script src="js/webWorkers.js"></script>
 		<script src="js/webWorkersShared.js"></script>

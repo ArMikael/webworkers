@@ -1,4 +1,5 @@
-onmessage = function(e){
+// Shared Web Worker
+onconnect = function(e){
     var port = e.ports[0];
 
     transport = new XMLHttpRequest();
@@ -11,6 +12,8 @@ onmessage = function(e){
     transport.send();
 };
 
+
+// Dedicated Web Worker
 // onmessage = function(e){
 //     transport = new XMLHttpRequest();
 //     transport.open('GET', '../data.txt', true);

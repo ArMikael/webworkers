@@ -4,7 +4,7 @@ onmessage = function(event) {
     console.log('DB create successfully');
 
     req.onsuccess = function (e) {
-        self.postMessage('DB successfully opened');
+        // self.postMessage('DB successfully opened');
     };
 
     req.onupgradeneeded = function (e) {
@@ -13,7 +13,7 @@ onmessage = function(event) {
 
         db.onerror = function (err) {
             console.log('Error loading database');
-            self.postMessage('error', err);
+            self.postMessage(err);
         };
 
         var objectStore = db.createObjectStore('devices', { keyPath: 'id' });
@@ -23,12 +23,12 @@ onmessage = function(event) {
         // Use transaction oncomplete to make sure the objectStore creation is finished before adding data into it
         objectStore.transaction.oncomplete = function(event) {
             var deviceObjectStore = db.transaction('devices', 'readwrite').objectStore('devices');
-            self.postMessage('DB transaction successfully');
-            self.postMessage('DB transaction successfully');
 
             deviceObjectStore.put({id: 1, type: 'camera'});
             deviceObjectStore.put({id: 2, type: 'tour'});
         };
+
+        self.postMessage('Ready');
     };
 };
 

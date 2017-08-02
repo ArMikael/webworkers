@@ -1,8 +1,21 @@
 (function(){
     'use strict';
 
+    var createBtn = document.querySelector('#createDbBtn');
+    var readBtn = document.querySelector('#readFromDbBtn');
+    var dataHeader = document.querySelector('#dbData');
+
     var indexedDbWorker = new Worker('js/indexeddb-worker.js');
-    indexedDbWorker.postMessage({ dbName: 'vicondb', dbVersion: 1});
+
+    createBtn.onclick = function () {
+        console.log('Create button clicked');
+        indexedDbWorker.postMessage({ dbName: 'vicondb', dbVersion: 1});
+    };
+
+    readBtn.onclick = function () {
+        console.log('Read button clicked');
+        readFromDbHandler();
+    };
 
     indexedDbWorker.onmessage = function (e) {
         // var data = JSON.parse(e.data);
@@ -25,7 +38,7 @@
             db = event.target.result;
 
             db.transaction('devices').objectStore('devices').get(1).onsuccess = function(event) {
-                alert("Type for device Id 1: " + event.target.result.type);
+                dataHeader.textContent = event.target.result.type;
             };
         };
     }

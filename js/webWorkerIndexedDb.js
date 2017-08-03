@@ -3,6 +3,7 @@
 
     var createBtn = document.querySelector('#createDbBtn');
     var readBtn = document.querySelector('#readFromDbBtn');
+    var sessionBtn = document.querySelector('#sessionBtn');
     var dataHeader = document.querySelector('#dbData');
 
     var indexedDbWorker = new Worker('js/indexeddb-worker.js');
@@ -15,6 +16,17 @@
     readBtn.onclick = function () {
         console.log('Read button clicked');
         readFromDbHandler();
+    };
+
+    sessionBtn.onclick = function () {
+        console.log('Session storage clicked');
+        sessionStorage.setItem('session', 4678930);
+
+        var data = sessionStorage.getItem('session');
+        console.log(data);
+
+        var sessionWorker = new Worker('js/session-worker.js');
+        sessionWorker.postMessage('Run');
     };
 
     indexedDbWorker.onmessage = function (e) {
